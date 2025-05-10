@@ -1,99 +1,151 @@
-/* Basic Reset */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f3f4f6;
-    height: 100%;
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Container Limits */
+/* Animated Background */
+.background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #92b7b2, #dfe6e9);
+  background-size: 800% 800%;
+  animation: gradientBG 20s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Main Container */
 .container {
-    max-width: 400px;
-    height: 600px;
-    margin: auto;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
+  max-width: 400px;
+  height: 600px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  position: relative;
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
 }
 
 /* Chat Window */
 #chat-window {
-    flex-grow: 1;
-    overflow-y: auto;
-    border: 1px solid #d1d5db;
-    padding: 0.75rem;
-    border-radius: 8px;
-    background-color: #e5e7eb;
-    margin-bottom: 0.75rem;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-bottom: 0.75rem;
+  scroll-behavior: smooth;
 }
 
-/* Message Styles */
+/* Message Bubbles */
 .message {
-    padding: 0.6rem 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 20px;
-    max-width: 75%;
-    word-wrap: break-word;
-    font-size: 0.95rem;
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 20px;
+  word-wrap: break-word;
+  font-size: 0.95rem;
+  max-width: 75%;
+  line-height: 1.4;
 }
 
 .user-message {
-    background-color: #3b82f6;
-    color: white;
-    margin-left: auto;
-    border-bottom-right-radius: 0px;
+  background-color: #eee718;
+  color: rgb(81, 72, 126);
+  margin-left: auto;
+  border-bottom-right-radius: 0;
 }
 
 .bot-message {
-    background-color: #e5e7eb;
-    color: #111827;
-    margin-right: auto;
-    border-bottom-left-radius: 0px;
+  background-color: rgba(36, 125, 194, 0.663);
+  color: #e7e1e2;
+  margin-right: auto;
+  border-bottom-left-radius: 0;
 }
 
-/* Input and Button */
+/* Hover Effects */
+.user-message:hover {
+  box-shadow: 0 0 10px rgba(107, 127, 159, 0.5);
+}
+
+.bot-message:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Input & Button */
 #user-input {
-    border: 1px solid #d1d5db;
-    border-radius: 20px;
-    padding: 0.6rem 1rem;
-    font-size: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(243, 101, 101);
+  transition: border-color 0.2s, background-color 0.2s;
 }
 
 #user-input:focus {
-    border-color: #3b82f6;
+  border-color: #60a5fa;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 #send-button {
-    margin-top: 0.5rem;
-    background-color: #3b82f6;
-    color: white;
-    font-weight: 600;
-    padding: 0.75rem;
-    width: 100%;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  margin-top: 0.5rem;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 #send-button:hover {
-    background-color: #2563eb;
+  background-color: #2563eb;
 }
 
-/* Responsive Constraints */
+/* File Upload Styling */
+#file-upload {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+#upload-status {
+  text-align: center;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
 @media (max-width: 400px) {
-    .container {
-        max-width: 100vw;
-        height: 600px;
-        padding: 0.75rem;
-        border-radius: 0;
-    }
+  .container {
+    max-width: 100vw;
+    height: 600px;
+    padding: 0.75rem;
+    border-radius: 0;
+  }
+
+  #chat-window {
+    height: calc(100vh - 250px);
+  }
 }
