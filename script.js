@@ -1,3 +1,35 @@
+// Handle file upload
+document.getElementById('file-upload').addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const status = document.getElementById('upload-status');
+    status.textContent = "🔄 Uploading and processing file...";
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+        const res = await fetch('http://127.0.0.1:5000/upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            status.textContent = "✅ File uploaded!";
+        } else {
+            status.textContent = "❌ Error: " + (data.error || "Unknown error");
+        }
+
+    } catch (err) {
+        status.textContent = "❌ Network error";
+        console.error('Upload error:', err);
+    }
+});
+
+// Handle user questions
 document.getElementById('send-button').addEventListener('click', async () => {
     const userInput = document.getElementById('user-input').value.trim();
     if (!userInput) return;
