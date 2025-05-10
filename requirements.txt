@@ -2,3 +2,8 @@ flask
 flask-cors
 transformers
 torch
+langchain-huggingface
+accelerate
+bitsandbytes
+pdfplumber
+python-docx
